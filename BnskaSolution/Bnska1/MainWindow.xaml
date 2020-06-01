@@ -6,7 +6,53 @@
         xmlns:local="clr-namespace:Bnska1"
         mc:Ignorable="d"
         Loaded="Window_Loaded" Title="БНСка" Height="400" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
-        
-    </Grid>
+    <DockPanel LastChildFill="True">
+        <GroupBox DockPanel.Dock="Top" Header="Выбор используемых насосов">
+            <Grid Height="30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" x:Name="checkPump1" Content="Насос 1" HorizontalAlignment="Center"/>
+                <CheckBox Grid.Column="1" x:Name="checkPump2" Content="Насос 2" HorizontalAlignment="Center"/>
+                <CheckBox Grid.Column="2" x:Name="checkPump3" Content="Насос 3" HorizontalAlignment="Center"/>
+                <CheckBox Grid.Column="3" x:Name="checkPump4" Content="Насос 4" HorizontalAlignment="Center"/>
+                <CheckBox Grid.Column="4" x:Name="checkPump5" Content="Насос 5" HorizontalAlignment="Center"/>
+                <CheckBox Grid.Column="5" x:Name="checkPump6" Content="Насос 6" HorizontalAlignment="Center"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Команды" DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Тест" Width="100" Height="40" Margin="5"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Пути к файлам">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Content="Насос:"/>
+                <Label Grid.Column="1" Grid.Row="0" Content="Пути к файлам CSV:" HorizontalAlignment="Center"/>
+                <Label Grid.Column="4" Grid.Row="0" Content="Пути к файлам XLSX:" HorizontalAlignment="Center"/>
+            </Grid>
+        </GroupBox>
+    </DockPanel>
 </Window>
