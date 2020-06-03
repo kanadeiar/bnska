@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.1145
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bnska1", "Bnska1\Bnska1.csproj", "{4B8C1B57-6122-444E-A13F-DD3A82893920}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppConvert", "ConsoleAppConvert\ConsoleAppConvert.csproj", "{57CC5F31-D535-4387-9771-8A3769047475}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4B8C1B57-6122-444E-A13F-DD3A82893920}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B8C1B57-6122-444E-A13F-DD3A82893920}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B8C1B57-6122-444E-A13F-DD3A82893920}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57CC5F31-D535-4387-9771-8A3769047475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57CC5F31-D535-4387-9771-8A3769047475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57CC5F31-D535-4387-9771-8A3769047475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57CC5F31-D535-4387-9771-8A3769047475}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
