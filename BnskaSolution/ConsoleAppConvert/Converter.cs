@@ -37,22 +37,24 @@ namespace ConsoleAppConvert
             };
             //var data = strs.Skip(1);
             Excel.Application application = new Excel.Application();
-            application.Workbooks.Add();
+            //application.Workbooks.Add();
+
+            var workbook = application.Workbooks.Open(toPath, 0, true, 5, "", "", false);
+            Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
+            foreach (var el in strs)
+            {
+                var split = el.Split(';');
+                string Date = split[0];
+                string Power = split[1];
+                string Frenq = split[3];
+                string Temp = split[5];
+                string Voltage = split[7];
+                string Currency = split[9];
+                Console.WriteLine($"{Date}, {Power}, {Frenq}, {Temp}, {Voltage}, {Currency}");
+
+            }
             application.Visible = true;
             application.UserControl = true;
-            //var workbook = application.Workbooks.Open(toPath, 0, true, 5, "", "", false);
-            //Excel.Worksheet worksheet = workbook.Worksheets[0];
-            //foreach (var el in strs)
-            //{
-            //    var split = el.Split(';');
-            //    string Date = split[0];
-            //    string Power = split[1];
-            //    string Frenq = split[3];
-            //    string Temp = split[5];
-            //    string Voltage = split[7];
-            //    string Currency = split[9];
-            //    Console.WriteLine($"{Date}, {Power}, {Frenq}, {Temp}, {Voltage}, {Currency}");
-            //}
             //workbook.Save();
             //workbook.Close();
 
