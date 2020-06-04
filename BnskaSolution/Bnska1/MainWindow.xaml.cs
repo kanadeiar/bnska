@@ -28,17 +28,14 @@ namespace Bnska1
         {
             InitializeComponent();
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            LoadState();
         }
         private void Window_Closed(object sender, EventArgs e)
         {
             SaveState();
         }
-
-
         async private void ConvertAll_Click(object sender, RoutedEventArgs e)
         {
             if (checkPump1.IsChecked == true)
@@ -197,81 +194,77 @@ namespace Bnska1
             SaveFilePathDialog(textPathXSLX6);
         }
         #endregion
-        [Serializable]
-        public class SavedStateXML
-        {
-            public bool checkPump1;
-            public bool checkPump2;
-            public bool checkPump3;
-            public bool checkPump4;
-            public bool checkPump5;
-            public bool checkPump6;
-            public string textPathCSV1;
-            [XmlAttribute]
-            public string textPathCSV2;
-            [XmlAttribute]
-            public string textPathCSV3;
-            [XmlAttribute]
-            public string textPathCSV4;
-            [XmlAttribute]
-            public string textPathCSV5;
-            [XmlAttribute]
-            public string textPathCSV6;
-            [XmlAttribute]
-            public string textPathXSLX1;
-            [XmlAttribute]
-            public string textPathXSLX2;
-            [XmlAttribute]
-            public string textPathXSLX3;
-            [XmlAttribute]
-            public string textPathXSLX4;
-            [XmlAttribute]
-            public string textPathXSLX5;
-            [XmlAttribute]
-            public string textPathXSLX6;
-        }
-        static void SaveStateToXML(SavedStateXML obj, string fileName)
-        {
-            XmlSerializer xmlFormat = new XmlSerializer(typeof(SavedStateXML));
-            using (FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write))
-            {
-                xmlFormat.Serialize(fs, obj);
-            }
-        }
-        static SavedStateXML LoadFromXMLToState(string filename)
-        {
-            SavedStateXML state = new SavedStateXML();
-            XmlSerializer xmlFormat = new XmlSerializer(typeof(SavedStateXML));
-            using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
-            {
-                state = xmlFormat.Deserialize(fs) as SavedStateXML;
-            }
-            return state;
-        }
+        /// <summary>
+        /// Сохранение состояния приложения
+        /// </summary>
         private void SaveState()
         {
             SavedStateXML state = new SavedStateXML
             {
-                checkPump1 = checkPump1.IsChecked ?? false,
-                checkPump2 = checkPump2.IsChecked ?? false,
-                checkPump3 = checkPump3.IsChecked ?? false,
-                checkPump4 = checkPump4.IsChecked ?? false,
-                checkPump5 = checkPump5.IsChecked ?? false,
-                checkPump6 = checkPump6.IsChecked ?? false,
-                textPathCSV1 = textPathCSV1.Text,
-                textPathCSV2 = textPathCSV2.Text,
-                textPathCSV3 = textPathCSV3.Text,
-                textPathCSV4 = textPathCSV4.Text,
-                textPathCSV5 = textPathCSV5.Text,
-                textPathCSV6 = textPathCSV6.Text,
-                textPathXSLX1 = textPathXSLX1.Text,
-                textPathXSLX2 = textPathXSLX2.Text,
-                textPathXSLX3 = textPathXSLX3.Text,
-                textPathXSLX4 = textPathXSLX4.Text,
-                textPathXSLX5 = textPathXSLX5.Text,
-                textPathXSLX6 = textPathXSLX6.Text,
+                MainWindow = new SavedStateXML.MainWindowXML
+                {
+                    checkPump1 = checkPump1.IsChecked ?? false,
+                    checkPump2 = checkPump2.IsChecked ?? false,
+                    checkPump3 = checkPump3.IsChecked ?? false,
+                    checkPump4 = checkPump4.IsChecked ?? false,
+                    checkPump5 = checkPump5.IsChecked ?? false,
+                    checkPump6 = checkPump6.IsChecked ?? false,
+                    textPathCSV1 = textPathCSV1.Text,
+                    textPathCSV2 = textPathCSV2.Text,
+                    textPathCSV3 = textPathCSV3.Text,
+                    textPathCSV4 = textPathCSV4.Text,
+                    textPathCSV5 = textPathCSV5.Text,
+                    textPathCSV6 = textPathCSV6.Text,
+                    textPathXSLX1 = textPathXSLX1.Text,
+                    textPathXSLX2 = textPathXSLX2.Text,
+                    textPathXSLX3 = textPathXSLX3.Text,
+                    textPathXSLX4 = textPathXSLX4.Text,
+                    textPathXSLX5 = textPathXSLX5.Text,
+                    textPathXSLX6 = textPathXSLX6.Text,
+                },
             };
-            SaveStateToXML(state, "state.xml");
+            try
+            {
+                SavedStateXML.SaveStateToXML(state, "state.xml");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Не удалось сохранить состояние приложения.\n" + ex.Message);
+            }
+        }
+        /// <summary>
+        /// Загрузка состояния приложения
+        /// </summary>
+        private void LoadState()
+        {
+            SavedStateXML state = new SavedStateXML();
+            try
+            {
+                state = SavedStateXML.LoadFromXMLToState("state.xml");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Не удалось загрузить состояние приложения.\n" + ex.Message);
+            }
+            SavedStateXML.MainWindowXML mainWindow = state.MainWindow;
+            checkPump1.IsChecked = mainWindow.checkPump1;
+            checkPump2.IsChecked = mainWindow.checkPump2;
+            checkPump3.IsChecked = mainWindow.checkPump3;
+            checkPump4.IsChecked = mainWindow.checkPump4;
+            checkPump5.IsChecked = mainWindow.checkPump5;
+            checkPump6.IsChecked = mainWindow.checkPump6;
+            textPathCSV1.Text = mainWindow.textPathCSV1;
+            textPathCSV2.Text = mainWindow.textPathCSV2;
+            textPathCSV3.Text = mainWindow.textPathCSV3;
+            textPathCSV4.Text = mainWindow.textPathCSV4;
+            textPathCSV5.Text = mainWindow.textPathCSV5;
+            textPathCSV6.Text = mainWindow.textPathCSV6;
+            textPathXSLX1.Text = mainWindow.textPathXSLX1;
+            textPathXSLX2.Text = mainWindow.textPathXSLX2;
+            textPathXSLX3.Text = mainWindow.textPathXSLX3;
+            textPathXSLX4.Text = mainWindow.textPathXSLX4;
+            textPathXSLX5.Text = mainWindow.textPathXSLX5;
+            textPathXSLX6.Text = mainWindow.textPathXSLX6;
         }
     }
 }
