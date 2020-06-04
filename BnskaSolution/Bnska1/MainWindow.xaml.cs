@@ -72,13 +72,13 @@ namespace Bnska1
         {
             OpenFilePathDialog(textPathCSV6);
         }
-        private void ButtonConvert1_Click(object sender, RoutedEventArgs e)
+        void ConvertFromCSVToXLSX(TextBox textPathCSV, TextBox textPathXSLX)
         {
-            string pathcsv = textPathCSV1.Text;
-            string pathxslx = textPathXSLX1.Text;
+            string pathcsv = textPathCSV.Text;
+            string pathxslx = textPathXSLX.Text;
             if (string.IsNullOrEmpty(pathcsv))
             {
-                MessageBox.Show("Введите путь к csv-файлу из БНСки!","Внимательней!");
+                MessageBox.Show("Введите путь к csv-файлу из БНСки!", "Внимательней!");
                 return;
             }
             if (string.IsNullOrEmpty(pathxslx))
@@ -88,7 +88,7 @@ namespace Bnska1
             }
             if (!File.Exists(pathcsv))
             {
-                MessageBox.Show($"Не существует csv-файла БНСки {pathcsv}","Ошибка");
+                MessageBox.Show($"Не существует csv-файла БНСки {pathcsv}", "Ошибка");
                 return;
             }
             try
@@ -102,17 +102,67 @@ namespace Bnska1
             }
             MessageBox.Show("Экспорт данных в файл Excel завершен успешно.", "Порядок");
         }
-        private void ButtonPathXSLX1_Click(object sender, RoutedEventArgs e)
+        private void ButtonConvert1_Click(object sender, RoutedEventArgs e)
+        {
+            ConvertFromCSVToXLSX(textPathCSV1, textPathXSLX1);
+        }
+        private void ButtonConvert2_Click(object sender, RoutedEventArgs e)
+        {
+            ConvertFromCSVToXLSX(textPathCSV2, textPathXSLX2);
+        }
+        private void ButtonConvert3_Click(object sender, RoutedEventArgs e)
+        {
+            ConvertFromCSVToXLSX(textPathCSV3, textPathXSLX3);
+        }
+        private void ButtonConvert4_Click(object sender, RoutedEventArgs e)
+        {
+            ConvertFromCSVToXLSX(textPathCSV4, textPathXSLX4);
+        }
+        private void ButtonConvert5_Click(object sender, RoutedEventArgs e)
+        {
+            ConvertFromCSVToXLSX(textPathCSV5, textPathXSLX5);
+        }
+        private void ButtonConvert6_Click(object sender, RoutedEventArgs e)
+        {
+            ConvertFromCSVToXLSX(textPathCSV6, textPathXSLX6);
+        }
+        void SaveFilePathDialog(TextBox textbox)
         {
             SaveFileDialog dialog = new SaveFileDialog
             {
                 Filter = "Файлы Mictosoft Excel (*.xslx)|*.xlsx",
-                FileName = textPathXSLX1.Text,
+                FileName = textbox.Text,
             };
             if (dialog.ShowDialog() == true)
             {
-                textPathXSLX1.Text = dialog.FileName;
+                textbox.Text = dialog.FileName;
             }
         }
+        private void ButtonPathXSLX1_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFilePathDialog(textPathXSLX1);
+        }
+        private void ButtonPathXSLX2_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFilePathDialog(textPathXSLX2);
+        }
+        private void ButtonPathXSLX3_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFilePathDialog(textPathXSLX3);
+        }
+        private void ButtonPathXSLX4_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFilePathDialog(textPathXSLX4);
+        }
+        private void ButtonPathXSLX5_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFilePathDialog(textPathXSLX5);
+        }
+        private void ButtonPathXSLX6_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFilePathDialog(textPathXSLX6);
+        }
+
+
     }
 }
