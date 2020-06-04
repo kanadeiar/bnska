@@ -16,7 +16,7 @@ namespace Bnska1
 
             string[] strs = strsRaw.Skip(1).ToArray();
             Excel.Application application = new Excel.Application();
-            var workbook = application.Workbooks.Open(toPath, 0, true, 5, "", "", false);
+            var workbook = application.Workbooks.Open(toPath, 0, false, 5, "", "", false);
             Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
             int currLine = 0;
 
@@ -54,8 +54,8 @@ namespace Bnska1
 
 
             ((Excel.Worksheet)workbook.Sheets[2]).Activate();
-            application.Visible = true;
-            application.UserControl = true;
+            //application.Visible = true;
+            //application.UserControl = true;
             workbook.Save();
             workbook.Close();
             application.Quit();
