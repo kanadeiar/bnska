@@ -245,6 +245,7 @@ namespace Bnska1
             catch (Exception ex)
             {
                 MessageBox.Show("Не удалось загрузить состояние приложения.\n" + ex.Message);
+                return;
             }
             SavedStateXML.MainWindowXML mainWindow = state.MainWindow;
             checkPump1.IsChecked = mainWindow.checkPump1;
