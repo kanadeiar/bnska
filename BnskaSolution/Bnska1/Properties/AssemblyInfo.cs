@@ -8,12 +8,12 @@ using System.Windows;
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
 [assembly: AssemblyTitle("Bnska1")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("https://github.com/kanadeiar/bnska")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("https://github.com/kanadeiar/bnska")]
 [assembly: AssemblyProduct("Bnska1")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("GNU GPL v 3.0")]
+[assembly: AssemblyTrademark("https://github.com/kanadeiar/bnska")]
 [assembly: AssemblyCulture("")]
 
 // Установка значения False для параметра ComVisible делает типы в этой сборке невидимыми
