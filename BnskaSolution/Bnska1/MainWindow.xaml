@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bnska1"
+        
         mc:Ignorable="d"
-        Loaded="Window_Loaded" Title="БНСка" Height="400" Width="800" WindowStartupLocation="CenterScreen">
+        Loaded="Window_Loaded" Title="БНСка - понедельник" Height="500" Width="800" MinHeight="400" MinWidth="400" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <local:Settings x:Key="Settings"/>
+    </Window.Resources>
     <DockPanel LastChildFill="True">
         <GroupBox DockPanel.Dock="Top" Header="Выбор используемых насосов">
             <Grid Height="30">
@@ -17,20 +21,20 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <CheckBox Grid.Column="0" x:Name="checkPump1" Content="Насос 1" HorizontalAlignment="Center"/>
-                <CheckBox Grid.Column="1" x:Name="checkPump2" Content="Насос 2" HorizontalAlignment="Center"/>
-                <CheckBox Grid.Column="2" x:Name="checkPump3" Content="Насос 3" HorizontalAlignment="Center"/>
-                <CheckBox Grid.Column="3" x:Name="checkPump4" Content="Насос 4" HorizontalAlignment="Center"/>
-                <CheckBox Grid.Column="4" x:Name="checkPump5" Content="Насос 5" HorizontalAlignment="Center"/>
-                <CheckBox Grid.Column="5" x:Name="checkPump6" Content="Насос 6" HorizontalAlignment="Center"/>
+                <CheckBox Grid.Column="0" IsChecked="{Binding Source={StaticResource Settings}, Path=CheckPump[0], Mode=TwoWay}" x:Name="checkPump1" Content="Насос 1" HorizontalAlignment="Center" FontSize="16"/>
+                <CheckBox Grid.Column="1" x:Name="checkPump2" Content="Насос 2" HorizontalAlignment="Center" FontSize="16"/>
+                <CheckBox Grid.Column="2" x:Name="checkPump3" Content="Насос 3" HorizontalAlignment="Center" FontSize="16"/>
+                <CheckBox Grid.Column="3" x:Name="checkPump4" Content="Насос 4" HorizontalAlignment="Center" FontSize="16"/>
+                <CheckBox Grid.Column="4" x:Name="checkPump5" Content="Насос 5" HorizontalAlignment="Center" FontSize="16"/>
+                <CheckBox Grid.Column="5" x:Name="checkPump6" Content="Насос 6" HorizontalAlignment="Center" FontSize="16"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Команды" DockPanel.Dock="Bottom">
             <StackPanel Orientation="Horizontal">
-                <Button Content="Тест" Width="100" Height="40" Margin="5"/>
+                <Button Content="Тест" Width="100" Height="40" Margin="5" Click="Button_Click"/>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Пути к файлам">
+        <GroupBox Header="Работа с файлами">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -50,8 +54,16 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Label Grid.Column="0" Grid.Row="0" Content="Насос:"/>
-                <Label Grid.Column="1" Grid.Row="0" Content="Пути к файлам CSV:" HorizontalAlignment="Center"/>
-                <Label Grid.Column="4" Grid.Row="0" Content="Пути к файлам XLSX:" HorizontalAlignment="Center"/>
+                <Label Grid.Column="1" Grid.Row="0" Content="Пути к файлам архивных данных с БНС *.csv:" HorizontalAlignment="Center"/>
+                <Label Grid.Column="4" Grid.Row="0" Content="Пути к файлам с графиками для Майорова *.xslx:" HorizontalAlignment="Center"/>
+
+                <Label Grid.Column="0" Grid.Row="1" Content="№1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" IsEnabled="{Binding ElementName=checkPump1, Path=IsChecked}"/>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="textPathCSV1" MaxHeight="30" IsEnabled="{Binding ElementName=checkPump1, Path=IsChecked}"/>
+                <Button Grid.Column="2" Grid.Row="1" x:Name="buttonPathCSV1" Width="30" MaxHeight="30" Content="..." Margin="3" IsEnabled="{Binding ElementName=checkPump1, Path=IsChecked}"/>
+                <Button Grid.Column="3" Grid.Row="1" x:Name="buttonConvert1" Width="60" MaxHeight="30" Content="->" Margin="3" IsEnabled="{Binding ElementName=checkPump1, Path=IsChecked}"/>
+                <TextBox Grid.Column="4" Grid.Row="1" x:Name="textPathXSLX1" MaxHeight="30" IsEnabled="{Binding ElementName=checkPump1, Path=IsChecked}"/>
+                <Button Grid.Column="5" Grid.Row="1" x:Name="buttonPathXSLX1" Width="30" MaxHeight="30" Content="..." Margin="3" IsEnabled="{Binding ElementName=checkPump1, Path=IsChecked}"/>
+                
             </Grid>
         </GroupBox>
     </DockPanel>

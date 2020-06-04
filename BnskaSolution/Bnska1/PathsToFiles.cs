@@ -9,9 +9,7 @@ namespace Bnska1
     [Serializable]
     static class PathsToFiles
     {
-        private static string filename = "paths.xml";
-        public static List<string> PathsToSCV { get; set; }
-        public static List<string> PathsToXLSX { get; set; }
+
         static PathsToFiles()
         {
 

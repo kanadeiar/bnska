@@ -13,5 +13,10 @@ namespace Bnska1
     /// </summary>
     public partial class App : Application
     {
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show($"Исключение: {e.Exception.Message}", "Исключение", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
+
 }
