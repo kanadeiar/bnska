@@ -12,7 +12,7 @@ namespace ConsoleAppConvert
         {
             Console.WriteLine("Приложение вставка данных");
 
-            Converter.Convert("Control5.csv", "d:\\Насос 5.xlsx");
+            Converter.Convert("Control5.csv", @"d:\Насос 5.xlsx");
 
             Console.WriteLine("Вставка завершена");
             Console.ReadKey();
