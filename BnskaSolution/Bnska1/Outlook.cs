@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 using COutlook = Microsoft.Office.Interop.Outlook;
 
 namespace Bnska1
@@ -11,11 +12,15 @@ namespace Bnska1
     {
         public static void CreateMailItemToMayorovYurzin(string[] attachments)
         {
+            AppSettingsReader ar = new AppSettingsReader();
+            string subjectStr = (string) ar.GetValue("OutlookSubject", typeof(string));
+            string toStr = (string)ar.GetValue("OutlookTo", typeof(string));
+            string bodyStr = (string)ar.GetValue("OutlookBody", typeof(string));
             COutlook.Application app = new COutlook.Application();
             COutlook.MailItem mailItem = app.CreateItem(COutlook.OlItemType.olMailItem);
-            mailItem.Subject = "Информация по насосам БНС Верхозим";
-            mailItem.To = "yurzinin@ulneft.ru; mayoroviv@ulneft.ru";
-            mailItem.Body = "Сообщение готово к отправке с вложенным файлом или ссылкой.";
+            mailItem.Subject = subjectStr;
+            mailItem.To = toStr;
+            mailItem.Body = bodyStr;
             if (attachments != null)
             {
                 foreach (var a in attachments)
