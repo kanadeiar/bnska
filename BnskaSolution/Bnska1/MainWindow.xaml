@@ -29,9 +29,15 @@
             </Grid>
         </GroupBox>
         <GroupBox Header="Команды" DockPanel.Dock="Bottom">
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="convertAll" Content="-> -> по всем выбранным насосам БНСки" Width="300" Height="40" Margin="5" Click="ConvertAll_Click" Background="#FF28FF13"/>
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" x:Name="convertAll" Content="-> -> по всем выбранным насосам БНСки" Width="300" Height="40" Margin="5" Click="ConvertAll_Click" Background="#FF60FF50"/>
+                <Button Grid.Column="2" x:Name="sendAll" Content="Отправить выбранные Майорову и Юрзину" Width="300" Height="40" Margin="5" Click="SendAll_Click" Background="Yellow"/>
+            </Grid>
         </GroupBox>
         <GroupBox Header="Работа с файлами">
             <Grid>

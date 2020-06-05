@@ -247,6 +247,8 @@ namespace Bnska1
                 MessageBox.Show("Не удалось загрузить состояние приложения.\n" + ex.Message);
                 return;
             }
+            if (state.MainWindow == null)
+                return;
             SavedStateXML.MainWindowXML mainWindow = state.MainWindow;
             checkPump1.IsChecked = mainWindow.checkPump1;
             checkPump2.IsChecked = mainWindow.checkPump2;
@@ -266,6 +268,11 @@ namespace Bnska1
             textPathXSLX4.Text = mainWindow.textPathXSLX4;
             textPathXSLX5.Text = mainWindow.textPathXSLX5;
             textPathXSLX6.Text = mainWindow.textPathXSLX6;
+        }
+
+        private void SendAll_Click(object sender, RoutedEventArgs e)
+        {
+            Outlook.CreateMailItemToMayorovYurzin();
         }
     }
 }
