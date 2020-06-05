@@ -272,7 +272,27 @@ namespace Bnska1
 
         private void SendAll_Click(object sender, RoutedEventArgs e)
         {
-            Outlook.CreateMailItemToMayorovYurzin();
+            List<string> attList = new List<string>();
+            if (checkPump1.IsChecked == true)
+                attList.Add(textPathXSLX1.Text);
+            if (checkPump2.IsChecked == true)
+                attList.Add(textPathXSLX2.Text);
+            if (checkPump3.IsChecked == true)
+                attList.Add(textPathXSLX3.Text);
+            if (checkPump4.IsChecked == true)
+                attList.Add(textPathXSLX4.Text);
+            if (checkPump5.IsChecked == true)
+                attList.Add(textPathXSLX5.Text);
+            if (checkPump6.IsChecked == true)
+                attList.Add(textPathXSLX6.Text);
+            try
+            {
+                Outlook.CreateMailItemToMayorovYurzin(attList.ToArray());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при формировании письма.\n" + ex.Message);
+            }
         }
     }
 }
